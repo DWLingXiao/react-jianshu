@@ -1,0 +1,90 @@
+.commentsWrapper {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 32px;
+}
+.commentArea {
+    box-sizing: border-box;
+    padding: 12px 16px;
+    width: 100%;
+    height: 90px;
+    font-size: 13px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fafafa;
+    resize: none;
+    display: inline-block;
+    vertical-align: top;
+    outline-style: none;
+}
+.commitCom {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.commitBtn1 {
+    width: 54px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    background-color: #ec7259;
+    opacity: 0.6;
+    color: white;
+    font-size: 15px;
+    line-height: 30px;
+}
+.commitBtn2 {
+    width: 54px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    color: #999;
+    background-color: white;
+    border: 1px solid #999;
+    margin-left: 10px;
+    font-size: 15px;
+    line-height: 30px;
+}
+.allCommentsTitle {
+    border-left:4px solid  #ec7259;
+    padding: 0 0 0 12px;
+    margin-bottom: 20px;
+}
+.allCommentsUsr {
+    margin-top: 15px;
+    display: flex;
+    
+}
+.allCommentsUsrAvatar {
+    width: 40px;
+    height: 40px;
+    background-color: beige;
+    border-radius: 50%;
+}
+.allCommentsUsrContext {
+    width: 100%;
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+.allCommentsUsrTime {
+    font-size: 12px;
+    color: #999;
+}
+.allCommentsUsrCtx {
+    margin-top: 10px;
+}
+.allCommentsUsrDianzan {
+    display: flex;
+    width: 100%;
+    height: 22px;
+    margin-top: 12px;
+    color: #999;
+    padding-bottom: 20px;
+}
+.allCommentsUsrDianzan1 {
+    margin-right: 30px;
+}

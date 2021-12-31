@@ -1,0 +1,55 @@
+.writeSourceInfo {
+    width: 625px;
+    height: 100px;
+    display: flex;
+    background-color: white;
+    box-sizing: border-box;
+}
+.writeSourceInfoAvatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid rgb(245, 245, 245);
+}
+.writeSourceInfoMax {
+    display: flex;
+    width: 50%;
+    height: 100px;
+    margin-left: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.writeSourceInfoMaxName {
+    font-size: 21px;
+    font-weight: 700;
+}
+.writeSourceInfoMaxInfo {
+    display: flex;
+    width: 50px;
+    flex: 1;
+    height: 50px;
+    border-right: 1px solid rgb(245, 245, 245);
+}
+.writeSourceInfoMaxInfo2 {
+    font-size: 12px;
+    color: #999;
+    margin-top: 9px;
+}
+.writeSourceInfoMax2 {
+    display: flex;
+}
+.writeSourceFollow {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+.writeSourceFollowBtn {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    background-color: #42c02e;
+    border: none;
+    border-radius: 40px;
+}

@@ -1,0 +1,20 @@
+.searchBody {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.searchWrapper {
+    width: 960px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    box-sizing: border-box;
+    padding-top: 30px;
+    justify-content: space-between;
+}
+.searchLeft {
+    width: 280px;
+}
+.searchRight {
+    width: 625px;
+}

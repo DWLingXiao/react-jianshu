@@ -1,0 +1,13 @@
+.recommandWrapper {
+    width: 280px;
+    margin-top: 30px 0;
+}
+.recommandItem{
+    width: 280px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+.recommand-img {
+    width: 280px;
+    height: 50px;
+}

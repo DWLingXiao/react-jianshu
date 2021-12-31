@@ -1,0 +1,17 @@
+
+.searchLeftWrapper {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+.searchLeftItem {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    line-height: 50px;
+    padding-left: 40px;
+    border-radius: 5px;
+}
+.searchLeftItem:hover{
+    background-color: rgb(225, 225, 225);
+}

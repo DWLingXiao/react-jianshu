@@ -1,0 +1,18 @@
+.RecoReadWrapper {
+    padding: 16px;
+    box-sizing: border-box;
+}
+.RecoReadTitle {
+    width: 100%;
+    height: 18px;
+    border-left: 4px solid #ec7259; 
+    margin-bottom: 16px;
+}
+.RecoReadArticle {
+    margin-top: 16px;
+}
+.RecoReadArticle2 {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+}

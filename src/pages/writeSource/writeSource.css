@@ -1,0 +1,25 @@
+.writeSourceBody {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.writeSourceWrapper {
+    width: 960px;
+    box-sizing: border-box;
+    padding-top: 30px;
+    margin: 0 auto;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.writeSourceRight {
+    width: 625px;
+    height: 100%;
+    background: white;
+
+}
+.writeSourceAbout {
+    width: 280px;
+    background: black;
+}
