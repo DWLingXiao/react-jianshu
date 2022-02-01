@@ -6,13 +6,13 @@ import ArticleDetail from './articleDetail'
 import Comments from './comments'
 import Header from '../../common/header'
 import axios from 'axios'
+
 export default function Detail() {
     const parmars = useParams()
     const [detail, setDetail] = useState({})
     useEffect(() => {
         axios.get(`http://localhost:8000/article/detail?id=${parmars.id}`).then((res) => {
             setDetail(res.data.result)
-            console.log(res.data.result)
         })
     }, [parmars.id])
     if (Object.keys(detail).length) {
@@ -24,7 +24,7 @@ export default function Detail() {
                         <ArticleDetail detail={detail} />
                     </div>
                     <div className='detailRight'>
-                        <WriterInfo detail={detail} />
+                        <WriterInfo writer_id={detail.writer_id} />
                     </div>
                     <div className='comments'>
                         <Comments detail={detail} />

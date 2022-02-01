@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import './articleDetail.css'
@@ -7,7 +7,7 @@ export default function ArticleDetail(props) {
     const { detail } = props
     const [isDianzan, setisDianzan] = useState(false)
     const [dianzanNum, setdianzanNum] = useState(detail.likes)
-    let Navigate = useNavigate()
+    let navigate = useNavigate()
     let user = JSON.parse(localStorage.getItem('jstoken'))
     let params = useParams()
     const dianZan = async () => {
@@ -17,32 +17,49 @@ export default function ArticleDetail(props) {
         }, {
             headers: { 'Authorization': user.token }
         })
+
         const data = res.data.result
-        setdianzanNum(data.proUpNum)
         if (data.proStatus === 0) {
             setisDianzan(false)
+            setdianzanNum(data.proUpNum)
         } else {
             setisDianzan(true)
+            setdianzanNum(data.proUpNum)
         }
-
     }
     const handleDianzan = () => {
         if (!localStorage.getItem('jstoken')) {
-            Navigate('/login')
+            navigate('/login')
         } else {
             dianZan()
         }
     }
-
+    const isUserUp = async (user) => {
+        if (user) {
+            const res = await axios.get(`http://localhost:8000/up/isUp?user_id=${user.id}&article_id=${params.id}`)
+            const state = res.data.result
+            if (state) {
+                setisDianzan(true)
+            } else {
+                setisDianzan(false)
+            }
+        }
+    }
+    const turnToUserInfo = (id) => {
+        navigate(`/writeSource/${id}`)
+    }
+    useEffect(() => {
+        isUserUp(user)
+    })
     return (
         <div className='articleDetailWrapper'>
             <h1 className='articleDetailTitle'>{detail.article_title}</h1>
             <div className='articleDetailTime'>
-                <div className='articleDetailTimeIn'>
+                <div className='articleDetailTimeIn' onClick={() => turnToUserInfo(detail.writer_id)}>
                     <img alt='' src={`http://localhost:8000/${detail.user.avatar}`} style={{ borderRadius: "50%" }}></img>
                 </div>
                 <div className='articleDetailTimeIn2'>
-                    <div className='articleDetailTimeInName'>
+                    <div className='articleDetailTimeInName' onClick={() => turnToUserInfo(detail.writer_id)}>
                         {detail.user.username}
                     </div>
                     <div className='articleDetailTimeInTime'>
@@ -72,7 +89,9 @@ export default function ArticleDetail(props) {
                             isDianzan ? '取' : '赞'
                         }
                     </div>
-                    <div>{dianzanNum}人点赞</div>
+                    <div>
+                        {dianzanNum}人点赞
+                    </div>
                 </div>
                 <div className='dianzanBox'>
                     <div className='dianzanImg'>

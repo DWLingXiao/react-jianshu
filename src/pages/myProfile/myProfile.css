@@ -1,9 +1,9 @@
-.writeSourceBody {
+.myProfileBody {
     width: 100%;
     height: 100%;
     background-color: white;
 }
-.writeSourceWrapper {
+.myProfileWrapper {
     width: 960px;
     box-sizing: border-box;
     padding-top: 30px;
@@ -12,12 +12,12 @@
     justify-content: space-between;
 }
 
-.writeSourceRight {
+.myProfileRight {
     width: 625px;
     height: 100%;
     background: white;
 
 }
-.writeSourceAbout {
+.myProfileAbout {
     width: 280px;
 }

@@ -22,7 +22,6 @@ export default function SearchRight(props) {
             <div className='searchRightContext'>
                 {
                     articlelist.length > 0 ? articlelist.map((item) => {
-                        console.log(item)
                         return (
                             <div className='searchRightContextWriter' key={item.id}>
                                 <div className='searchRightContextWriterInfo'>

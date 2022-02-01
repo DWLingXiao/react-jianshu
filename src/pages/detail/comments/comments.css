@@ -88,3 +88,8 @@
 .allCommentsUsrDianzan1 {
     margin-right: 30px;
 }
+
+.allCommentsUsrName {
+    cursor: pointer;
+    width: 30px;
+}

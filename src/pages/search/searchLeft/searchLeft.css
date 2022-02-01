@@ -13,5 +13,8 @@
     border-radius: 5px;
 }
 .searchLeftItem:hover{
-    background-color: rgb(225, 225, 225);
+    background-color: #f0f0f0;
+}
+.selected {
+    background-color: #f0f0f0;
 }

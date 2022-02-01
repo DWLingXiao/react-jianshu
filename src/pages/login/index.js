@@ -25,7 +25,6 @@ export default function Login() {
         })
         if (res.data.code === 0) {
             if (res.data.result.status !== 0) {
-                console.log(res.data.result)
                 localStorage.setItem('jstoken', JSON.stringify(res.data.result))
                 navigator('/')
             } else {

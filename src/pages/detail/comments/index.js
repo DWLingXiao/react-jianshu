@@ -8,14 +8,15 @@ export default function Comments() {
     const navigate = useNavigate()
     const params = useParams()
     const commentRef = useRef()
-    const getComment = async () => {
-        const res = await axios.get(`http://localhost:8000/command/get?article_id=${params.id}`)
+    const id = params.id
+    const getComment = async (id) => {
+        const res = await axios.get(`http://localhost:8000/command/get?article_id=${id}`)
         const data = res.data.result.rows
         setCommentList(data)
     }
     useEffect(() => {
-        getComment()
-    }, [])
+        getComment(id)
+    }, [id])
     const handleSubmitCommand = () => {
         const user = JSON.parse(localStorage.getItem('jstoken'))
         if (!user) {
@@ -44,7 +45,9 @@ export default function Comments() {
     const handleCancelCommand = () => {
         commentRef.current.value = ''
     }
-
+    const turnToUserInfo = (id) => {
+        navigate(`/writeSource/${id}`)
+    }
     return (
         <div className='commentsWrapper'>
             <textarea className='commentArea' placeholder='请写下你的评论' ref={commentRef}></textarea>
@@ -60,11 +63,11 @@ export default function Comments() {
             {
                 commentList.length ? commentList.map((item) => {
                     return <div className='allCommentsUsr' key={item.id}>
-                        <div className='allCommentsUsrAvatar'>
+                        <div className='allCommentsUsrAvatar' onClick={() => turnToUserInfo(item.user_id)}>
                             <img alt='' src={`http://localhost:8000/${item.user.avatar}`} style={{ width: "40px", height: "40px", borderRadius: "50%" }}></img>
                         </div>
                         <div className='allCommentsUsrContext'>
-                            <div className='allCommentsUsrName'>
+                            <div className='allCommentsUsrName' onClick={() => turnToUserInfo(item.user_id)}>
                                 {item.user.username}
                             </div>
                             <div className='allCommentsUsrTime'>

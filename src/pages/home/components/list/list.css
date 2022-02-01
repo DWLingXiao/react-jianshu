@@ -3,6 +3,9 @@
     border-bottom: 1px solid #dcdcdc;
     overflow: hidden;
 }
+
+
+
 .list-img {
     width: 125px;
     height: 100px;
@@ -23,12 +26,20 @@
     font-weight: bold;
     color:#333;
 }
+
+.title:hover {
+    text-decoration: underline;
+}
+
 .desc {
     font-size: 13px;
     line-height: 24px;
     height: 70px;
-    overflow: hidden;
     color: #999;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 .loadMore {
     width: 100%;

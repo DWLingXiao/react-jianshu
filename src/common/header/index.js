@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 import './header.css'
-import logo from '../../asset/img/nav-logo.png'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -12,6 +11,7 @@ function Header(props) {
     const [mouseFlag, setMouseFlag] = useState(false)
     const searchRef = useRef()
     const navigate = useNavigate()
+    const userToken = JSON.parse(localStorage.getItem('jstoken'))
     const [mouseFlagTwo, setMouseFlagTwo] = useState(false)
     const {
         focused,
@@ -48,14 +48,15 @@ function Header(props) {
         localStorage.removeItem('jstoken')
         window.location.reload()
     }
+    const turnToMyProfile = (userToken) => {
+        navigate(`/myProfile/${userToken.id}`)
+    }
+    const turnToSetting = (userToken) => {
+        navigate(`/setting/${userToken.id}`)
+    }
     return (
         <div>
             <div className='headerWrapper'>
-                <Link to='/'>
-                    <div className='logo'>
-                        <img src={logo} alt="" className='img'></img>
-                    </div>
-                </Link>
                 <div className='nav'>
                     <Link to='/' className='navItem'>首页</Link>
                     <div className='navItem'>下载App</div>
@@ -96,8 +97,8 @@ function Header(props) {
             </div>
             {
                 (mouseFlag || mouseFlagTwo) ? <div className='headerSetUp' onMouseEnter={displaySetUpTwo} onMouseLeave={undisplaySetUpTwo}>
-                    <div className='headerSetUp1'>我的主页</div>
-                    <div className='headerSetUp1'>设置</div>
+                    <div className='headerSetUp1' onClick={() => turnToMyProfile(userToken)}>我的主页</div>
+                    <div className='headerSetUp1' onClick={() => turnToSetting(userToken)}>设置</div>
                     <div className='headerSetUp1' onClick={exit}>退出</div>
                 </div> : ''
             }

@@ -7,6 +7,8 @@ import Login from './pages/login';
 import Register from './pages/register';
 import WriteSource from './pages/writeSource';
 import Search from './pages/search';
+import MyProfile from './pages/myProfile'
+import Setting from './pages/setting'
 
 function App() {
   return (
@@ -18,8 +20,10 @@ function App() {
             <Route path="/detail/:id" element={<Detail />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
-            <Route path="/writeSource" element={<WriteSource />}></Route>
+            <Route path="/writeSource/:user_id" element={<WriteSource />}></Route>
             <Route path="/search/:title" element={<Search />}></Route>
+            <Route path="/myprofile/:id" element={<MyProfile />}></Route>
+            <Route path="/setting/:id" element={<Setting />}></Route>
           </Routes>
         </BrowserRouter>
       </div >

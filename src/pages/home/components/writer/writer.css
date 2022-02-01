@@ -17,6 +17,11 @@
     display: block;
     font-size: 14px;
     color: #969696;
+    cursor: pointer;
+}
+
+.page-change:hover {
+    color: #777;
 }
 
 
@@ -29,6 +34,7 @@
 .writeCommList {
     width: 100%;
     display: flex;
+    margin-top: 12px;
 }
 .writeCommListImg {
     width: 48px;
@@ -36,6 +42,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(245, 245, 245, 245);
     border-radius: 50%;
+    cursor: pointer;
 }
 .writeCommListInfo {
     display: flex;
@@ -55,4 +62,8 @@
 .writeCommListInfoFollow {
     font-size: 14px;
     color: #42c02e;
+}
+
+.writeCommListInfoName {
+    cursor: pointer;
 }

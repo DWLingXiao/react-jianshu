@@ -10,7 +10,6 @@
     line-height: 43px;
     box-sizing: border-box;
     margin-top: 30px;
-    padding-left: 40px;
     font-size: 17px;
     font-weight: 700;
     color: #646464;
@@ -25,8 +24,11 @@
     border-bottom: 1px solid #f0f0f0;
     flex-direction: column;
 }
-.writeSourcePageCtxTitle {
+
+.writeSourcePageTitle2 {
+    cursor: pointer;
     font-size: 18px;
     font-weight: 700;
     color: #333;
+    
 }

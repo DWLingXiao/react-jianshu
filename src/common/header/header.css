@@ -72,7 +72,14 @@
     background: white;
     font-size: 14px;
     color: #ec6149;
+    cursor: pointer;
 }
+
+.register:hover {
+    background-color: #ea6f5a;
+    color: white;
+}
+
 .write {
     float: right;
     line-height: 38px;
@@ -83,8 +90,14 @@
     padding: 0 20px;
     background: #ec6149;
     color:white;
+    cursor: pointer;
     font-size: 15px;
 }
+
+.write:hover {
+    background-color: #ea6f5a;
+}
+
 .searchBox {
     position: relative;
     float: left;
@@ -100,6 +113,7 @@
     line-height: 30px;
     text-align: center;
     border-radius: 50%;
+    cursor: pointer;
 }
 .focused {
     width: 240px;
@@ -205,6 +219,7 @@
     box-sizing: border-box;
     line-height: 40px;
     padding-left: 40px;
+    cursor: pointer;
 
 }
 .headerSetUp1:hover{

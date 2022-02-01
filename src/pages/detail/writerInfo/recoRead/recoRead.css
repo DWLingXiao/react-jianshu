@@ -11,6 +11,13 @@
 .RecoReadArticle {
     margin-top: 16px;
 }
+.RecoReadArticle1 {
+   cursor: pointer;
+}
+.RecoReadArticle1:hover {
+   text-decoration: underline;
+
+}
 .RecoReadArticle2 {
     font-size: 12px;
     color: #999;

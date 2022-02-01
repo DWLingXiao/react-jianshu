@@ -1,21 +1,19 @@
-import React from 'react'
-import './writeSourceHead.css'
+import React from 'react';
 
-export default function WriteSourceHead(props) {
-    const { info, watchnums, likesnums } = props
+export default function MyProfileHead() {
     return (
         <div className='writeSourceInfo'>
             <div className='writeSourceInfoAvatar'>
-                <img alt='' className='writeSourceInfoAvatar' src={`http://localhost:8000/${info.avatar}`}></img>
+                <img alt='' className='writeSourceInfoAvatar' src={`http://localhost:8000/defaultAvatar.jpg`}></img>
             </div>
             <div className='writeSourceInfoMax'>
                 <div className='writeSourceInfoMaxName'>
-                    {info.username}
+                    czx
                 </div>
                 <div className='writeSourceInfoMax2'>
                     <div className='writeSourceInfoMaxInfo'>
                         <div>
-                            {watchnums}
+                            100
                             <div className='writeSourceInfoMaxInfo2'>
                                 阅读量
                             </div>
@@ -23,7 +21,7 @@ export default function WriteSourceHead(props) {
                     </div>
                     <div className='writeSourceInfoMaxInfo'>
                         <div>
-                            {info.fans}
+                            100
                             <div className='writeSourceInfoMaxInfo2'>
                                 粉丝
                             </div>
@@ -31,7 +29,7 @@ export default function WriteSourceHead(props) {
                     </div>
                     <div className='writeSourceInfoMaxInfo'>
                         <div>
-                            {likesnums}
+                            100
                             <div className='writeSourceInfoMaxInfo2'>
                                 喜欢
                             </div>
