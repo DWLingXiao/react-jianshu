@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import './myProfilePage.css'
 
-export default function MyProfilePage() {
+export default function MyProfilePage(props) {
+    const { page } = props
+    const { rows, writer_info } = page
     const [isShowArticle, setIsShowArticle] = useState(true)
     const changeShowArticle = () => {
         setIsShowArticle(true)
@@ -9,6 +12,7 @@ export default function MyProfilePage() {
     const changeShowActivity = () => {
         setIsShowArticle(false)
     }
+
     return (
         <div className='writeSourcePageWrapper'>
             <div className='writeSourcePageTitle'>
@@ -16,30 +20,42 @@ export default function MyProfilePage() {
                 <span className='myprofileTitle' onClick={changeShowActivity}>我的动态</span>
             </div>
             {
-                isShowArticle ? <div className='listItem' >
-                    <img className='list-img' src={`http://localhost:8000/defaultAvatar.jpg`} alt='' />
-                    <div className='listInfo'>
-                        <div className='title'><div className='writeSourcePageTitle2'>czx</div></div>
-                        <p className='desc'>1111111</p>
-                        <div className='listItemInfo'>
-                            <div>
-                                czx
-                            </div>
-                            <div style={{ marginLeft: "15px" }}>
-                                赞 100
-                            </div>
-                            <div style={{ marginLeft: "15px" }}>
-                                看 100
-                            </div>
-                        </div>
-                    </div>
+                isShowArticle ? rows.length ?
+                    rows.map((item) => {
+                        return (
+                            <div className='listItem' key={item.id}>
+                                <img className='list-img' src={`http://localhost:8000/defaultAvatar.jpg`} alt='' />
+                                <div className='listInfo'>
+                                    <Link to={`/detail/${item.id}`} className='title'><div className='writeSourcePageTitle2'>{item.article_title}</div></Link>
+                                    <p className='desc'>{item.context}</p>
+                                    <div className='listItemInfo'>
+                                        <div>
+                                            {writer_info.username}
+                                        </div>
+                                        <div style={{ marginLeft: "15px" }}>
+                                            赞 {item.likes}
+                                        </div>
+                                        <div style={{ marginLeft: "15px" }}>
+                                            看 {item.watchNum}
+                                        </div>
+                                    </div>
+                                </div>
 
-                </div> : <div className='myProfileActivity'>
-                    <div className='myProfileActivityItem'><span className='myProfileName'>czx</span> 加入了简书 2021-10-21</div>
-                    <div className='myProfileActivityItem'><span className='myProfileName'>czx</span> 加入了简书 2021-10-21</div>
-                    <div className='myProfileActivityItem'><span className='myProfileName'>czx</span> 加入了简书 2021-10-21</div>
-                    <div className='myProfileActivityItem'><span className='myProfileName'>czx</span> 加入了简书 2021-10-21</div>
-                </div>
+                            </div>
+                        )
+                    })
+                    : <div>暂无内容</div>
+                    : rows.length ? <div className='myProfileActivity'>
+                        <div className='myProfileActivityItem'><span className='myProfileName'>{writer_info.username}</span> 加入了平台 {writer_info.createdAt}</div>
+                        {
+                            rows.map((item) => {
+                                return (<div className='myProfileActivityItem' key={item.id}><span className='myProfileName'>{writer_info.username}</span> 创建了文章《{item.article_title}》 {item.createdAt}</div>)
+                            })
+                        }
+
+                    </div> : <div className='myProfileActivity'>
+                        <div className='myProfileActivityItem'><span className='myProfileName'>{writer_info.username}</span> 加入了平台 {writer_info.createdAt}</div>
+                    </div>
             }
 
         </div>

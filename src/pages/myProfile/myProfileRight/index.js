@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function MyProfileRight() {
+export default function MyProfileRight(props) {
+    const { right: { writer_info } } = props
     return (
         <div className='writeSourceRightWrapper'>
             <div className='writeSourceRightTitle'>
@@ -11,7 +12,7 @@ export default function MyProfileRight() {
                     个人介绍
                 </div>
                 <div className='writeSourceRightMessage'>
-                    暂无
+                    {writer_info.user_sign}
                 </div>
             </div>
         </div>
