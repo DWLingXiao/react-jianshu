@@ -21,7 +21,6 @@ export default function WriteSource() {
         }
     })
     if (Object.keys(writerInfo).length !== 0) {
-        console.log(writerInfo)
         let likesNums = 0
         let watchNums = 0
         const { rows, writer_info } = writerInfo

@@ -3,33 +3,82 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './writer.css'
 
-let currentPage = 1
 export default function Writer() {
     const [fansList, setFansList] = useState([])
+    const [page, setPage] = useState(1)
+    const [myFollowList, setMyFollowList] = useState([])
     const navigate = useNavigate()
-    const getFollowList = async () => {
-        let page = currentPage || 1
-        if (currentPage >= 3) {
-            currentPage = 1
+    const user = JSON.parse(localStorage.getItem('jstoken'))
+    let userId
+    if (user) {
+        userId = user.id
+    }
+    const getFollowList = async (page) => {
+        const res = await axios.get(`http://localhost:8000/follow/all?currentPage=${page}`)
+        const data = res.data.result.rows
+        setFansList(data)
+    }
+    const changePageList = async (page) => {
+        if (page >= 3) {
+            setPage(1)
         }
         const res = await axios.get(`http://localhost:8000/follow/all?currentPage=${page}`)
         const data = res.data.result.rows
         setFansList(data)
-        currentPage++
+        setPage(x => x + 1)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const getUserList = async (userId) => {
+        const res = await axios.get(`http://localhost:8000/follow/get?user_id=${userId}`, {
+            headers: { 'Authorization': user.token }
+        })
+        const data = res.data.result.list
+        if (data.length > 0) {
+            const myfollow = []
+            for (let i = 0; i < data.length; i++) {
+                myfollow.push(data[i].writer_id)
+            }
+            setMyFollowList(myfollow)
+        }
     }
     const handleClickWriter = (id) => {
         navigate(`/writeSource/${id}`)
     }
-    useEffect((currentPage) => {
-        if (fansList.length === 0) {
-            getFollowList(currentPage)
+    const handleFollow = async (id) => {
+        if (user) {
+            await axios.post('http://localhost:8000/follow', {
+                user_id: userId,
+                writer_id: id
+            }, {
+                headers: { 'Authorization': user.token }
+            })
+            getUserList(userId)
+        } else {
+            navigate('/login')
         }
-    })
+    }
+    const cancelFollow = async (id) => {
+        await axios.post('http://localhost:8000/follow/cancel', {
+            user_id: userId,
+            writer_id: id
+        }, {
+            headers: { 'Authorization': user.token }
+        })
+        getUserList(userId)
+    }
+    useEffect(() => {
+        getFollowList(page)
+    }, [page])
+    useEffect(() => {
+        if (user && myFollowList.length === 0) {
+            getUserList(userId)
+        }
+    }, [userId, user, myFollowList, getUserList])
     return (
         <div className='writerWrapper'>
             <div className='Writetitle'>
                 <span>推荐作者</span>
-                <div className='page-change' onClick={() => getFollowList()}><span className='iconfont' style={{ marginRight: "5px", fontSize: "14px", color: "#969696" }}>&#xe851;</span>换一批</div>
+                <div className='page-change' onClick={() => changePageList(page)}><span className='iconfont' style={{ marginRight: "5px", fontSize: "14px", color: "#969696" }}>&#xe851;</span>换一批</div>
                 {
                     fansList.length && fansList.map((item) => {
                         return (
@@ -46,7 +95,12 @@ export default function Writer() {
                                     </div>
                                 </div>
                                 <div className='writeCommListInfoFollow'>
-                                    <span>+ 关注</span>
+                                    {
+
+                                        (myFollowList.length > 0 && myFollowList.includes(item.id) === true) ?
+                                            <span style={{ "cursor": 'pointer', "color": "red" }} onClick={() => cancelFollow(item.id, page)}>+ 取消</span> :
+                                            <span style={{ "cursor": 'pointer' }} onClick={() => handleFollow(item.id)}>+ 关注</span>
+                                    }
                                 </div>
                             </div>
                         )

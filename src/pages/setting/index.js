@@ -62,7 +62,6 @@ export default function Setting() {
             })
         }
         const newUser = { ...user, avatar: avatar }
-        console.log(newUser);
         localStorage.setItem('jstoken', JSON.stringify(newUser))
         navigator('/')
     }

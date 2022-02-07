@@ -69,7 +69,8 @@ export default function ArticleDetail(props) {
             </div>
             <div className='articleDetailMar'>
                 <img alt='' className='articleDetailImg' src={`http://localhost:8000/${detail.article_img}`} />
-                {detail.context}
+                <div dangerouslySetInnerHTML={{ __html: detail.context }}></div>
+                {/* {detail.context} */}
             </div>
             <div className='articleNext'>
                 <div className='articlePreBtn'>

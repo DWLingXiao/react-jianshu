@@ -27,7 +27,8 @@ export default function MyProfilePage(props) {
                                 <img className='list-img' src={`http://localhost:8000/defaultAvatar.jpg`} alt='' />
                                 <div className='listInfo'>
                                     <Link to={`/detail/${item.id}`} className='title'><div className='writeSourcePageTitle2'>{item.article_title}</div></Link>
-                                    <p className='desc'>{item.context}</p>
+                                    {/* <p className='desc'>{item.context}</p> */}
+                                    <div className='desc' dangerouslySetInnerHTML={{ __html: item.context }}></div>
                                     <div className='listItemInfo'>
                                         <div>
                                             {writer_info.username}

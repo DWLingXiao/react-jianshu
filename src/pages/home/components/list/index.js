@@ -24,7 +24,8 @@ function List(props) {
                         <img className='list-img' src={`http://localhost:8000/${item.article_img}`} alt='' />
                         <div className='listInfo'>
                             <Link to={`/detail/${item.id}`} className='title'>{item.article_title}</Link>
-                            <p className='desc'>{item.context}</p>
+                            {/* <p className='desc'>{item.context}</p> */}
+                            <div className='desc' dangerouslySetInnerHTML={{ __html: item.context }}></div>
                             <div className='listItemInfo'>
                                 <div>
                                     {item.user.username}
@@ -44,7 +45,7 @@ function List(props) {
             <div className='loadMore' onClick={() => handleMoreList(page)}>
                 阅读更多
             </div>
-        </div>
+        </div >
     )
 }
 

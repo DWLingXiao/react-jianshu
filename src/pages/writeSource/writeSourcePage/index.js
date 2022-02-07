@@ -20,7 +20,8 @@ export default function WriteSourcePage(props) {
                             <img className='list-img' src={`http://localhost:8000/${item.article_img}`} alt='' />
                             <div className='listInfo'>
                                 <div className='title'><div className='writeSourcePageTitle2' onClick={() => turnToArticle(item.id)}>{item.article_title}</div></div>
-                                <p className='desc'>{item.context}</p>
+                                {/* <p className='desc'>{item.context}</p> */}
+                                <div className='desc' dangerouslySetInnerHTML={{ __html: item.context }}></div>
                                 <div className='listItemInfo'>
                                     <div>
                                         {name}
