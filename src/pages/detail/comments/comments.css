@@ -27,11 +27,16 @@
     height: 30px;
     border: none;
     border-radius: 15px;
-    background-color: #ec7259;
+    background-color: rgba(236,114,89,.8);
     opacity: 0.6;
     color: white;
     font-size: 15px;
     line-height: 30px;
+    cursor: pointer;
+    transition: background-color .2s ease-in;
+}
+.commitBtn1:hover {
+    background-color: #ec7259;
 }
 .commitBtn2 {
     width: 54px;
@@ -44,7 +49,15 @@
     margin-left: 10px;
     font-size: 15px;
     line-height: 30px;
+    cursor: pointer;
+    transition: all .2s ease-in;
 }
+
+.commitBtn2:hover {
+    color: #666;
+    border-color: #666;
+}
+
 .allCommentsTitle {
     border-left:4px solid  #ec7259;
     padding: 0 0 0 12px;
@@ -91,5 +104,4 @@
 
 .allCommentsUsrName {
     cursor: pointer;
-    width: 30px;
 }

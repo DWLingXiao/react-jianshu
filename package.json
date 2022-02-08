@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.17.2",
     "axios": "^0.24.0",
+    "braft-editor": "^2.3.9",
     "http-proxy-middleware": "^2.0.1",
     "immutable": "^4.0.0",
     "react": "^17.0.2",

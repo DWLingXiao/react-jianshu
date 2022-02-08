@@ -9,6 +9,7 @@ import WriteSource from './pages/writeSource';
 import Search from './pages/search';
 import MyProfile from './pages/myProfile'
 import Setting from './pages/setting'
+import WritePage from './pages/writePage'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/search/:title" element={<Search />}></Route>
             <Route path="/myprofile/:id" element={<MyProfile />}></Route>
             <Route path="/setting/:id" element={<Setting />}></Route>
+            <Route path="/write/:writer_id" element={<WritePage />}></Route>
           </Routes>
         </BrowserRouter>
       </div >

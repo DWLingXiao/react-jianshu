@@ -1,0 +1,114 @@
+.writePageWrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.writePageLeft {
+    width: 256px;
+    box-sizing: border-box;
+    background-color: #404040;
+    padding: 30px 18px 5px;
+    text-align: center;
+}
+
+.writePageLeftBtn {
+    font-size: 15px;
+    padding: 9px 0;
+    color: #ec7259;
+    border: 1px solid rgba(236,114,89,.8);
+    border-radius: 20px;
+    width: 220px;
+    height: 43px;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    transition: border-color .2s ease-in;
+}
+
+.writePageLeftBtn:hover {
+    border-color:#ec7259;
+}
+
+.writePageRight {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.writePageRightTitle {
+    width: 366px;
+    height: 100%;
+    border-right:2px solid #f0f0f0;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.writePageRightTitle2 {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.writePageRightTitleIpt {
+    width: 300px;
+    height: 40px;
+    font-size: 25px;
+    background-color: #f0f0f0;
+    border: none;
+}
+
+.writePageRightTitle3 {
+    margin-top: 50px;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.writePageRightPic {
+    display: flex;
+    flex-direction: column;
+}
+
+.writePageRightChangePic {
+    background-color: white;
+    height: 50px;
+    width: 300px;
+    font-size: 16px;
+    color: #ec7259;
+    border-radius: 50px;
+    border: 2px solid #ec7259;
+}
+
+.writePageRightPicDiv {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+    margin-top: 30px;
+}
+
+.writePageRightSmallPic {
+    width: 300px;
+    height: 300px;
+}
+
+.writePageRightPushArt{
+    background-color: white;
+    height: 50px;
+    width: 300px;
+    font-size: 16px;
+    color: white;
+    background-color:#ec7259 ;
+    border-radius: 50px;
+    border:none;
+    margin-top: 50px;
+    transition: background-color .2s ease-in;
+    cursor: pointer;
+}
+
+.writePageRightPushArt:hover{
+    background-color: rgba(236,114,89,.8);
+}

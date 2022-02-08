@@ -9,13 +9,14 @@ export default function Comments() {
     const params = useParams()
     const commentRef = useRef()
     const id = params.id
-    const getComment = async (id) => {
+    const getComment = async () => {
         const res = await axios.get(`http://localhost:8000/command/get?article_id=${id}`)
         const data = res.data.result.rows
         setCommentList(data)
     }
     useEffect(() => {
         getComment(id)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
     const handleSubmitCommand = () => {
         const user = JSON.parse(localStorage.getItem('jstoken'))
@@ -29,7 +30,7 @@ export default function Comments() {
             let token = user.token
             axios.post('http://localhost:8000/command/write', {
                 user_id: user.id,
-                article_id: Number(params.id),
+                article_id: id,
                 context: commentRef.current.value
             }, {
                 headers: { 'Authorization': token }

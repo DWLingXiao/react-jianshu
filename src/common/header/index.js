@@ -11,6 +11,7 @@ function Header(props) {
     const [mouseFlag, setMouseFlag] = useState(false)
     const searchRef = useRef()
     const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem('jstoken'))
     const userToken = JSON.parse(localStorage.getItem('jstoken'))
     const [mouseFlagTwo, setMouseFlagTwo] = useState(false)
     const {
@@ -34,6 +35,13 @@ function Header(props) {
     }
     const undisplaySetUpTwo = () => {
         setMouseFlagTwo(!mouseFlagTwo)
+    }
+    const turnToWritePage = () => {
+        if (user) {
+            navigate(`/write/${user.id}`)
+        } else {
+            navigate(`/login`)
+        }
     }
     const handleSearch = () => {
         const searchContext = searchRef.current.value
@@ -81,7 +89,7 @@ function Header(props) {
 
                 </div>
                 <div className='addition'>
-                    <button className='write'>
+                    <button className='write' onClick={turnToWritePage}>
                         <span className="iconfont">&#xe708;</span>
                         写文章
                     </button>

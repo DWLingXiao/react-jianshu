@@ -21,7 +21,7 @@ export default function Detail() {
                 <Header />
                 <div className='detailWrapper'>
                     <div className='detailLeft'>
-                        <ArticleDetail detail={detail} />
+                        <ArticleDetail />
                     </div>
                     <div className='detailRight'>
                         <WriterInfo writer_id={detail.writer_id} />
