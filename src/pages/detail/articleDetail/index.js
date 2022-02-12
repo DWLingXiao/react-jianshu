@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import './articleDetail.css'
+import { changeTime } from '../../../utils/changeTime'
 
 export default function ArticleDetail() {
     const [detail, setDetail] = useState({})
@@ -73,14 +74,13 @@ export default function ArticleDetail() {
                             {detail.user.username}
                         </div>
                         <div className='articleDetailTimeInTime'>
-                            {`${detail.createdAt}  阅读${detail.watchNum}  喜欢${detail.likes} `}
+                            {`${changeTime(detail.createdAt)}  阅读${detail.watchNum}  喜欢${detail.likes} `}
                         </div>
                     </div>
                 </div>
                 <div className='articleDetailMar'>
                     <img alt='' className='articleDetailImg' src={`http://localhost:8000/${detail.article_img}`} />
                     <div dangerouslySetInnerHTML={{ __html: detail.context }}></div>
-                    {/* {detail.context} */}
                 </div>
                 <div className='articleNext'>
                     <div className='articlePreBtn'>

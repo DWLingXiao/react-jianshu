@@ -1,13 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 import './writeSourceHead.css'
+import { message } from 'antd'
 
 export default function WriteSourceHead(props) {
     const { info, watchnums, likesnums } = props
     const { user_id } = useParams()
-    const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('jstoken'))
     let userId
     if (user) {
@@ -38,9 +37,9 @@ export default function WriteSourceHead(props) {
         }, {
             headers: { 'Authorization': user.token }
         })
+        message.success('取消关注成功')
     }
     const handleFollow = async (userId, writerId) => {
-        setIsFollow(true)
         if (user) {
             await axios.post('http://localhost:8000/follow', {
                 user_id: userId,
@@ -49,8 +48,11 @@ export default function WriteSourceHead(props) {
                 headers: { 'Authorization': user.token }
             })
         } else {
-            navigate('/login')
+            message.error('请先登录')
+            return
         }
+        setIsFollow(true)
+        message.success('关注成功')
     }
     useEffect(() => {
         if (user) {

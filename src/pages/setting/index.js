@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../../common/header'
 import './setting.css'
+import { message, Modal } from 'antd';
 
 export default function Setting() {
     const addStyle = async (e) => {
@@ -19,6 +20,7 @@ export default function Setting() {
     const [pwdTwo, setPwdTwo] = useState('')
     const [sign, setSign] = useState('')
     const [avatar, setAvatar] = useState('')
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [oldInfo, setOldInfo] = useState({})
     const navigator = useNavigate()
     const fileRef = useRef()
@@ -31,18 +33,8 @@ export default function Setting() {
         setSign(writer_info.user_sign)
         setAvatar(writer_info.avatar)
     }
-    const saveChange = async () => {
-
-        if (!name) {
-            console.log('用户名不能为空');
-            return
-        } else if (pwd !== pwdTwo) {
-            console.log('两次密码不一致');
-            return
-        } else if (!sign) {
-            console.log('个人介绍不能为空');
-            return
-        }
+    const handleOk = async () => {
+        setIsModalVisible(false)
         if (pwd) {
             await axios.patch('http://localhost:8000/user/update', {
                 username: name,
@@ -65,12 +57,28 @@ export default function Setting() {
         localStorage.setItem('jstoken', JSON.stringify(newUser))
         navigator('/')
     }
+    const handleCancel = () => {
+        setIsModalVisible(false)
+    }
+    const saveChange = async () => {
+        if (!name) {
+            message.error('用户名不能为空')
+            return
+        } else if (pwd !== pwdTwo) {
+            message.error('两次密码不一致')
+            return
+        } else if (!sign) {
+            message.error('个人介绍不能为空')
+            return
+        }
+        setIsModalVisible(true)
+
+    }
     const changeAvatar = () => {
         fileRef.current.click()
 
     }
     const handleImageChange = async (e) => {
-        //console.log(e.target.files[0]);
         const formData = new FormData()
         formData.append("file", e.target.files[0])
         let config = {
@@ -90,6 +98,15 @@ export default function Setting() {
         return (
             <div>
                 <Header />
+                <Modal title="修改资料"
+                    visible={isModalVisible}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    okText={'确认'}
+                    cancelText={'取消'}
+                >
+                    <p>确认修改吗</p>
+                </Modal>
                 <div className='settingWrapper'>
                     <div className='settingLeft' onClick={(e) => addStyle(e)}>
                         <div className='settingItem selected'>基本设置</div>

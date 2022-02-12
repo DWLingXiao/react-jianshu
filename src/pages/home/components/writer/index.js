@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './writer.css'
+import { message } from 'antd'
 
 export default function Writer() {
     const [fansList, setFansList] = useState([])
@@ -53,6 +54,7 @@ export default function Writer() {
                 headers: { 'Authorization': user.token }
             })
             getUserList(userId)
+            message.success('关注成功')
         } else {
             navigate('/login')
         }
@@ -65,6 +67,7 @@ export default function Writer() {
             headers: { 'Authorization': user.token }
         })
         getUserList(userId)
+        message.success('取消关注成功')
     }
     useEffect(() => {
         getFollowList(page)

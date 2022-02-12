@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { searchFoucs, getList } from './store/actionCreators'
+import { message } from 'antd';
 
 
 
@@ -46,7 +47,8 @@ function Header(props) {
     const handleSearch = () => {
         const searchContext = searchRef.current.value
         if (!searchContext) {
-            console.log('搜索内容不能为空')
+
+            message.error('搜索内容不能为空');
             return
         } else {
             navigate(`/search/${searchContext}`)

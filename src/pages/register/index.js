@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Header from '../../common/header'
 import './register.css'
+import { message } from 'antd'
 
 export default function Register() {
     const [username, setUsername] = useState('')
@@ -21,7 +22,10 @@ export default function Register() {
 
     const handleRegister = async () => {
         if (!username || !phoneNumber || !password) {
-            console.log('用户名或手机号或密码不能为空')
+            message.error('用户名或手机号或密码不能为空')
+            return
+        } else if (!(/^1[3456789]\d{9}$/.test(phoneNumber))) {
+            message.error('请输入正确的手机号')
             return
         } else {
             axios.post('http://localhost:8000/user/register', {
@@ -34,7 +38,7 @@ export default function Register() {
                 }
             }).catch(err => {
                 if (err.request.status === 409) {
-                    console.log('用户名或手机号已被注册')
+                    message.error('用户名或手机号已被注册')
                     return
                 }
             })
@@ -51,7 +55,7 @@ export default function Register() {
                     </h4>
                     <div className='registerNewSession'>
                         <input type='text' placeholder='用户名' onChange={(e) => getUsername(e)}></input>
-                        <input type='text' placeholder='手机号或者邮箱' onChange={(e) => getPhoneNumber(e)}></input>
+                        <input type='text' placeholder='手机号' onChange={(e) => getPhoneNumber(e)}></input>
                         <input type='password' placeholder='密码' onChange={(e) => getPassword(e)}></input>
                     </div>
                     <button className='registerBtn' onClick={handleRegister}>注册</button>

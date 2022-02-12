@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
 import './comments.css'
+import { changeTime } from '../../../utils/changeTime'
 
 export default function Comments() {
     const [commentList, setCommentList] = useState([])
@@ -72,7 +73,7 @@ export default function Comments() {
                                 {item.user.username}
                             </div>
                             <div className='allCommentsUsrTime'>
-                                {item.createdAt}
+                                {changeTime(item.createdAt)}
                             </div>
                             <div className='allCommentsUsrCtx'>
                                 {item.context}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import './myProfilePage.css'
+import { changeTime } from '../../../utils/changeTime';
 
 export default function MyProfilePage(props) {
     const { page } = props
@@ -47,15 +48,15 @@ export default function MyProfilePage(props) {
                     })
                     : <div>暂无内容</div>
                     : rows.length ? <div className='myProfileActivity'>
-                        <div className='myProfileActivityItem'><span className='myProfileName'>{writer_info.username}</span> 加入了平台 {writer_info.createdAt}</div>
+                        <div className='myProfileActivityItem'><span className='myProfileName'>{writer_info.username}</span> 加入了平台 {changeTime(writer_info.createdAt)}</div>
                         {
                             rows.map((item) => {
-                                return (<div className='myProfileActivityItem' key={item.id}><span className='myProfileName'>{writer_info.username}</span> 创建了文章《{item.article_title}》 {item.createdAt}</div>)
+                                return (<div className='myProfileActivityItem' key={item.id}><span className='myProfileName'>{writer_info.username}</span> 创建了文章《{item.article_title}》 {changeTime(item.createdAt)}</div>)
                             })
                         }
 
                     </div> : <div className='myProfileActivity'>
-                        <div className='myProfileActivityItem'><span className='myProfileName'>{writer_info.username}</span> 加入了平台 {writer_info.createdAt}</div>
+                        <div className='myProfileActivityItem'><span className='myProfileName'>{writer_info.username}</span> 加入了平台 {changeTime(writer_info.createdAt)}</div>
                     </div>
             }
 

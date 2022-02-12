@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Header from '../../common/header'
 import axios from 'axios'
 import './login.css'
+import { message } from 'antd'
 
 export default function Login() {
     const [phoneNumber, setPhoneNumber] = useState('')
@@ -16,22 +17,28 @@ export default function Login() {
     }
     const handleClick = async () => {
         if (!phoneNumber || !password) {
-            console.log('用户名或者密码不能为空')
+            message.error('用户名或者密码不能为空')
             return
         }
-        const res = await axios.post('http://localhost:8000/user/login', {
-            phoneNumber: phoneNumber.toString(),
-            password: password.toString()
-        })
-        if (res.data.code === 0) {
-            if (res.data.result.status !== 0) {
-                localStorage.setItem('jstoken', JSON.stringify(res.data.result))
-                navigator('/')
-            } else {
-                console.log('该账号已被封禁')
-                return
+        try {
+            const res = await axios.post('http://localhost:8000/user/login', {
+                phoneNumber: phoneNumber.toString(),
+                password: password.toString()
+            })
+            if (res.data.code === 0) {
+                if (res.data.result.status !== 0) {
+                    localStorage.setItem('jstoken', JSON.stringify(res.data.result))
+                    navigator('/')
+                } else {
+                    message.error('该账号已被封禁')
+                    return
+                }
             }
+        } catch (error) {
+            message.error('账号或密码错误')
+            return
         }
+
     }
     return (
         <div>
